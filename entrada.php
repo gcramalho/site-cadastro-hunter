@@ -5,6 +5,7 @@ if (!isset ($_SESSION['logado'])) {
     exit();
 }  
 
+echo "teste de branch";
 ?>
 
 <html><p>Oi, inserir ppagina de funcionario com foto aqui</p></html>
