@@ -1,0 +1,201 @@
+@font-face {
+    src: url(fontes/pixel.TTF);
+    font-family: pixel;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(tst.jpg) no-repeat; /* MUDAR IMAGEM DE FUNDO */
+    background-size: cover;
+}
+
+.container {
+    /*background-color: green;*/
+    width: 520px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /*color: #fff; DEFINIR COR DE TEXTOS NO CONTAINER */
+    border-radius: 20px;
+    padding: 50px 65px;
+    backdrop-filter: blur(7px);
+    
+}
+
+.container .obtenha {
+    font-family: pixel;
+    font-optical-sizing: auto;
+    color: #692f2f;
+    text-align: center;
+    font-size: 22px;
+}
+
+.container h1 {
+    font-family: pixel;
+    font-optical-sizing: auto;
+    font-size: 36px;
+    text-align: center;
+    color: #47cd5dd1;  /* MUDAR COR 'BEM VINDO' */
+}
+
+.container .input-caixa {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0px;
+}
+
+.input-caixa input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(150, 216, 147, 0.732); /*DEFINIR COR DOS INPUTS 'INSIRA ETC' */
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;  
+    padding: 20px 45px 20px;
+}
+
+.input-caixa input::placeholder {
+    color: #ffffff7d; /*COR TEXTO 'INSIRA' */ 
+}
+
+.container .lembrar-caixa {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0px 15px;
+}
+
+.lembrar-caixa label input {
+    color:#fff;
+    margin-right: 3px;
+}
+
+.lembrar-caixa label {
+    color: #ffffffe0;
+}
+
+.lembrar-caixa a {
+    color: #ffffffe0;
+    text-decoration: none;
+}
+
+.lembrar-caixa a:hover {
+    text-decoration: underline;
+}
+
+.container .btn {
+    width: 100%;
+    height: 45px;
+    background: transparent  /*MUDAR COR DO BOTÃO ENTRAR*/;
+    border: 10px;
+    outline: #396e2d auto 1px;
+    border-radius: 5px;
+    box-decoration-break: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 20px;
+    font-family: pixel;
+    color: #408231;  /* MUDAR COR DAS LETRAS 'ENTRAR' */
+}
+
+.container .registrar-se {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0px 20px;
+    color: #fffffff0; /*COR TEXTO 'Ñ POSSUI CADADSTRO?' */
+}
+
+.registrar-se p a {
+    color: #47cd5dd1; /*MUDAR COR TEXTO 'REGISTRE-SE' */
+    text-decoration: none; 
+}
+
+.registrar-se p a:hover {
+   text-decoration: underline;
+}
+
+/*.container .h2 {
+    color: white;
+    text-align: center;
+}*/
+
+.container .registrar {
+    width: 100%;
+    height: 45px;
+    background: #2f6a42fa   /*MUDAR COR DO BOTÃO*/;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-decoration-break: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffffffd4;  /* MUDAR COR DAS LETRAS 'REGISTRAR-SE' */
+    margin: 15px;
+    margin-left: 0;
+}
+
+.input-cadastro input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid rgba(86, 28, 28, 0.732); /*DEFINIR COR DOS INPUTS 'INSIRA ETC' */
+    border-radius: 7px;
+    font-size: 16px;
+    color: #fff;  
+    padding: 20px 45px 20px;
+}
+
+.container .input-cadastro {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0px;
+}
+
+.container .alerta {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    position: fixed;
+}
+
+.input-imagem p {
+    font-size: 13px;   
+    color: red;
+    font-style: italic;
+}
+
+.input-imagem input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid rgba(86, 28, 28, 0.732); /*DEFINIR COR DOS INPUTS 'INSIRA ETC' */
+    border-radius: 7px;
+    font-size: 13px;
+    color: transparent;  
+    padding: 14px 135px;
+    margin-bottom: 0;
+}
