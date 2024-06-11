@@ -24,6 +24,7 @@ if (isset($_SESSION['logado'])) {
     </head>
 
     <body>
+        <h1>Oi</h1>
         <div class="container">
 
             <form action="tratarlogin.php" method="post">
