@@ -1,7 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION['logado'])) {
-    header("Location: entrada.php");
+   header("Location: entrada.php");
+   
 } else {
     if (isset($_GET['error']) && $_GET['error'] === '1') {
         echo  "<script> alert('É necessário fazer login para acessar esta página'); </script>";

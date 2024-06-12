@@ -1,4 +1,4 @@
 <?php
-require "cadastro.php";
+//testar se devo tratar aq
 
 ?>

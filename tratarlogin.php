@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         //checa se senha confere e efetua o login 
         if (password_verify($senha, $usuario['senha'])) {
             session_start();
-            $_SESSION['logado'] = "sim"; 
+            $_SESSION['logado'] = "sim";  //sessão de login
             header('Location: entrada.php');
             die();
         } else {

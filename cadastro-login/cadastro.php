@@ -1,4 +1,5 @@
 <?php
+require_once "bancodados.php";
 //recuperando dados SE o botão "registrar-se" foi clicado
 
 if (isset($_POST['registro'])) {
@@ -6,13 +7,52 @@ if (isset($_POST['registro'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $senhaRepetida = $_POST['senhaRepetida'];
-    $foto = $_FILES['imagem']['tmp_name'];
-
-    //insert tratamento da foto aq (tratarfoto.php)
-    
 
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
     $erros = array();
+
+
+    //tratar foto 
+    if (isset($_FILES['imagem']['tmp_name'])) {
+        $arquivo = $_FILES['imagem'];
+
+        if($arquivo['error']){
+            die("Falha ao enviar arquivo");
+        }
+
+        if($arquivo['size'] > 5242880){
+            array_push($erros, "Arquivo muito grande. Max:2MB");               
+        }
+
+        $pasta_final = "../imagens/";
+        $nomeArquivo = $arquivo['name'];
+        $novoNomeArquivo = uniqid(); //criando id único pro arquivo
+        
+        //formatando extensao
+       $extensao = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
+        
+       if($extensao != 'jpg' && $extensao != 'png'){
+        array_push($erros, "Tipo de arquivo inválido");
+       }
+
+       $caminho = $pasta_final . $novoNomeArquivo . "." . $extensao;
+
+       //movendo o arquivo para a pasta "imagens" do código
+       $moveu = move_uploaded_file($arquivo["tmp_name"], $caminho);
+
+       //inserindo no bd
+       /*$mysqli = new mysqli($hostName, $bdUsuario, $bdSenha, $bdNome);
+       if($moveu){
+        $mysqli->query("INSERT INTO usuarios (foto) VALUES ('$caminho')") or die($mysqli->error);
+
+       } else {
+        echo "Falha no envio";
+       }*/
+
+    } 
+
+
 
     //checando se campos estão vazios, se sim entram na array de erros
     if (empty($login) || empty($email) || empty($senha) || empty($senhaRepetida)) {
@@ -39,7 +79,7 @@ if (isset($_POST['registro'])) {
 
     //ver se o email já existe no bd
 
-    require_once "bancodados.php";
+    //require_once "bancodados.php";
 
     $sqlChecaEmail = "SELECT * FROM usuarios WHERE email = '$email'";
     $resultado = mysqli_query($conn, $sqlChecaEmail);
@@ -51,22 +91,21 @@ if (isset($_POST['registro'])) {
 
     //se existir erros tirar cada dos array e mostrar na tela (erro)
     if (count($erros) > 0) {
-        foreach($erros as $erro) {
+        foreach ($erros as $erro) {
             echo "<div class='alerta'> $erro </div>";
-            
-        } 
+        }
     } else {
-        //trabalhando/inserindo no banco de dados
-        
+        //se n houver erros insere no banco de dados
+
         $sql = "INSERT INTO usuarios (login, email, senha, foto) VALUES ( ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         $preparaStmt = mysqli_stmt_prepare($stmt, $sql);
 
         if ($preparaStmt) {
-            mysqli_stmt_bind_param($stmt, "ssss", $login, $email, $senhaHash, $foto);
+            mysqli_stmt_bind_param($stmt, "ssss", $login, $email, $senhaHash, $caminho);
             mysqli_stmt_execute($stmt);
             echo "<script> alert('Registrado com sucesso') </script>";
-            header('Location: ../index.php');
+            //header('Location: ../index.php'); //ATIVAR AQ PARA REDIRECIONAR DIRETO DEPOIS DO REGISTRO
         } else {
             die("Algo deu errado");
         }
@@ -134,6 +173,9 @@ if (isset($_POST['registro'])) {
 
         </form>
 
+     <?php 
+        
+    ?>
     </div>
 
 
