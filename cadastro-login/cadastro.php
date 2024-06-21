@@ -3,7 +3,7 @@ require_once "bancodados.php";
 //recuperando dados SE o botão "registrar-se" foi clicado
 
 if (isset($_POST['registro'])) {
-    $login = $_POST['login'];
+    $login = ucwords($_POST['login']);
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $senhaRepetida = $_POST['senhaRepetida'];
@@ -13,13 +13,13 @@ if (isset($_POST['registro'])) {
     $erros = array();
 
 
-    //tratar foto 
+    //tratamento da foto 
     if (isset($_FILES['imagem']['tmp_name'])) {
         $arquivo = $_FILES['imagem'];
 
-        if($arquivo['error']){
+        /*if($arquivo['error']){
             die("Falha ao enviar arquivo");
-        }
+        }*/
 
         if($arquivo['size'] > 5242880){
             array_push($erros, "Arquivo muito grande. Max:2MB");               
@@ -27,31 +27,22 @@ if (isset($_POST['registro'])) {
 
         $pasta_final = "../imagens/";
         $nomeArquivo = $arquivo['name'];
-        $novoNomeArquivo = uniqid(); //criando id único pro arquivo
+        $novoNomeArquivo = uniqid();  //criando id único pro arquivo
         
         //formatando extensao
        $extensao = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
         
        if($extensao != 'jpg' && $extensao != 'png'){
         array_push($erros, "Tipo de arquivo inválido");
-       }
+
+       } 
 
        $caminho = $pasta_final . $novoNomeArquivo . "." . $extensao;
 
        //movendo o arquivo para a pasta "imagens" do código
        $moveu = move_uploaded_file($arquivo["tmp_name"], $caminho);
 
-       //inserindo no bd
-       /*$mysqli = new mysqli($hostName, $bdUsuario, $bdSenha, $bdNome);
-       if($moveu){
-        $mysqli->query("INSERT INTO usuarios (foto) VALUES ('$caminho')") or die($mysqli->error);
-
-       } else {
-        echo "Falha no envio";
-       }*/
-
-    } 
-
+    }
 
 
     //checando se campos estão vazios, se sim entram na array de erros
@@ -105,7 +96,7 @@ if (isset($_POST['registro'])) {
             mysqli_stmt_bind_param($stmt, "ssss", $login, $email, $senhaHash, $caminho);
             mysqli_stmt_execute($stmt);
             echo "<script> alert('Registrado com sucesso') </script>";
-            //header('Location: ../index.php'); //ATIVAR AQ PARA REDIRECIONAR DIRETO DEPOIS DO REGISTRO
+            header('Location: ../index.php'); // REDIRECIONA DIRETO DEPOIS DO REGISTRO
         } else {
             die("Algo deu errado");
         }
