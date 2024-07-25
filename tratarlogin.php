@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (password_verify($senha, $usuario['senha'])) {
            
             $_SESSION['logado'] = "sim";  //sessão de login
-            header('Location: entrada.php');
+            header('Location: user_side/entrada.php');
             die();
         } else {
             echo "<div class ='alerta'> Senha não confere! </div>";

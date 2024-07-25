@@ -42,13 +42,12 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 60%;
+    border-radius: 50%;
     overflow: hidden;
     position: absolute;
-    top: -60%;
+    bottom: -50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  
 }
 
 img{
@@ -65,6 +64,7 @@ img{
     flex-direction: column;
     align-items: center;
     position: absolute;
+    top: 34%;
 }
 
 .container a{
@@ -72,8 +72,9 @@ img{
 }
 
 .texto-geral h1{
-    letter-spacing: 1px;
-    font-size: 34px;
+    letter-spacing: 2px;
+    font-size: 36px;
+    position: relative;
 }
 
 .texto-geral p{   /*TEXTO ABAIXO DA IMAGEM*/
@@ -81,6 +82,7 @@ img{
     font-size: 15px;
     max-width: 300px;
     margin-bottom: 10px;
+    margin-top: 12px;  /* posição do texto com relaçao ao h1 */ 
     background-color: #1717189d;
 }
 
@@ -97,6 +99,8 @@ img{
     margin-top: 22px;   /*mudar posicao do botao sair*/
     border-radius: 7px;
     transition: .5s;
+    position: fixed;
+    bottom: 12%;
 }
 
 
@@ -106,16 +110,17 @@ button:hover{   /*ANIMACAO BOTAO SAIR*/
     box-shadow: 0 0 10px #ffd332;
 }
 
-.social-medias{
+.email{
     display: flex;
-    margin-top: 17px;
-   
+    position: fixed;
+    bottom: 19%;
+    left: 589px;
 }
 
- .social-medias i{     /*LOGO EMAIL */
+ .email i{     /*LOGO EMAIL */
     cursor: pointer;
-    height: 35px;
-    width: 35px;
+    height: 38px;
+    width: 38px;
     border: 2px solid #f3ccd8 ;
     border-radius: 50%;
     display: flex;
@@ -123,17 +128,54 @@ button:hover{   /*ANIMACAO BOTAO SAIR*/
     align-items: center;
     font-size: 20px;
     color: #ffd332;
-    margin-left: 12px;
     transition: .4s;
+
 }
 
-.social-medias i:hover{
+.email i:hover{
     box-shadow: #ffd332f6;
     color: #ffd332c2;
     background: #f8d65a9d;
 }
 
-.social-medias p{  /*TEXTO EMAIL*/
+.email p{  /*TEXTO icones*/
    background-color: transparent;
-   margin-left: 3px;
+   position: relative;
+   font-size: medium;
+   left: 5px;
+}
+
+.medalha{
+    display: flex;
+    position: fixed;
+    bottom: 24%;
+    left: 589px;
+    padding-bottom: 1%;
+}
+
+.medalha i{
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border: 2px solid #f3ccd8 ;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #ffd332;
+    transition: .4s;
+}
+
+.medalha p{
+    background-color: transparent;
+    font-size: medium;
+    position: relative;
+    left: 5px;
+}
+
+.medalha i:hover{
+    box-shadow: #ffd332f6;
+    color: #ffd332c2;
+    background: #f8d65a9d;
 }
