@@ -21,7 +21,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(tst.jpg) no-repeat; /* MUDAR IMAGEM DE FUNDO */
+    background: url(../imagens/tst.jpg) no-repeat; /* MUDAR IMAGEM DE FUNDO */
     background-size: cover;
 }
 
@@ -198,4 +198,15 @@ body {
     color: transparent;  
     padding: 14px 135px;
     margin-bottom: 0;
+}
+
+.error-msg {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.error-msg p {
+    color: red;
+    margin-bottom: 10px;
 }

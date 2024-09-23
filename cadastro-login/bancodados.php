@@ -12,9 +12,4 @@ $conn = mysqli_connect($hostName, $bdUsuario, $bdSenha, $bdNome);
 
 if (!$conn) {
     die("Falha na conexão");
-} /*else {
-    echo "<script> alert('Conexão bem sucedida!') </script>";
-}*/
-
-
-?>
+}

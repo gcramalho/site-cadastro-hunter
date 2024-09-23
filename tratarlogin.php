@@ -17,12 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     //session_start(); //guardando infos em session p usar em outras páginas
 
-    $usuario = mysqli_fetch_array($resultado, MYSQLI_ASSOC);  //coloca os dados da tabela usuario dentro da variavel-array
+    $usuario = mysqli_fetch_array($resultado, MYSQLI_ASSOC);  // Coloca os dados da tabela usuario dentro da variavel-array
 
     $_SESSION['usuarioOn'] = $usuario; 
 
     if ($usuario){ 
-        //checa se senha confere e efetua o login 
+        // Checa se senha confere e efetua o login 
         if (password_verify($senha, $usuario['senha'])) {
            
             $_SESSION['logado'] = "sim";  //sessão de login

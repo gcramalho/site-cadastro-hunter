@@ -1,6 +1,7 @@
 <?php
 require_once "bancodados.php";
-//recuperando dados SE o botão "registrar-se" foi clicado
+
+// Recuperando dados SE o botão "registrar-se" foi clicado
 
 if (isset($_POST['registro'])) {
     $login = ucwords($_POST['login']);
@@ -13,7 +14,7 @@ if (isset($_POST['registro'])) {
     $erros = array();
 
 
-    //tratamento da foto 
+    // Tratamento da foto 
     if (isset($_FILES['imagem']['tmp_name'])) {
         $arquivo = $_FILES['imagem'];
 
@@ -25,11 +26,11 @@ if (isset($_POST['registro'])) {
             array_push($erros, "Arquivo muito grande. Max:2MB");               
         }
 
-        $pasta_final = "../imagens/";
+        $pasta_final = "../src/imagens/";
         $nomeArquivo = $arquivo['name'];
         $novoNomeArquivo = uniqid();  //criando id único pro arquivo
         
-        //formatando extensao
+        // Formatando extensao
        $extensao = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
         
        if($extensao != 'jpg' && $extensao != 'png'){
@@ -39,39 +40,36 @@ if (isset($_POST['registro'])) {
 
        $caminho = $pasta_final . $novoNomeArquivo . "." . $extensao;
 
-       //movendo o arquivo para a pasta "imagens" do código
+       // Movendo o arquivo para a pasta "imagens" do código
        $moveu = move_uploaded_file($arquivo["tmp_name"], $caminho);
 
     }
 
 
-    //checando se campos estão vazios, se sim entram na array de erros
+    // Checando se campos estão vazios, se sim entram na array de erros
     if (empty($login) || empty($email) || empty($senha) || empty($senhaRepetida)) {
         array_push($erros, "Todos os campos são obrigatorios" . PHP_EOL);
     }
 
 
-    //checando digitação do email
+    // Checando digitação do email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         array_push($erros, "E-mail não é valido ");
     }
 
 
-    //checando tamanho da senha 
+    // Checando tamanho da senha 
     if (strlen($senha) < 8) {
         array_push($erros, "Senha não pode ser menor que 8 digitos ");
     }
 
 
-    //checando se senha é diferente
+    // Checando se senha é diferente
     if ($senha !== $senhaRepetida) {
         array_push($erros, "Senhas não conferem ");
     }
 
-    //ver se o email já existe no bd
-
-    //require_once "bancodados.php";
-
+    // Ver se o email já existe no BD
     $sqlChecaEmail = "SELECT * FROM usuarios WHERE email = '$email'";
     $resultado = mysqli_query($conn, $sqlChecaEmail);
     $rowTotal = mysqli_num_rows($resultado);
@@ -80,14 +78,18 @@ if (isset($_POST['registro'])) {
         array_push($erros, 'Email já em uso');
     }
 
-    //se existir erros tirar cada dos array e mostrar na tela (erro)
-    if (count($erros) > 0) {
-        foreach ($erros as $erro) {
-            echo "<div class='alerta'> $erro </div>";
-        }
-    } else {
-        //se n houver erros insere no banco de dados
 
+    // Se existir erros tira cada dos array e mostra na tela (erro)
+    $msgErros = '';
+
+    if (count($erros) > 0) 
+    {
+        foreach ($erros as $erro) {
+            $msgErros .= "<p> $erro <br> </p>";
+        }
+    } else 
+    {
+        //se n houver erros insere no banco de dados
         $sql = "INSERT INTO usuarios (login, email, senha, foto) VALUES ( ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($conn);
         $preparaStmt = mysqli_stmt_prepare($stmt, $sql);
@@ -114,10 +116,10 @@ if (isset($_POST['registro'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Hunter</title>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../src/css/style.css">
     <style>
         body {
-            background: url(../imagens/wallpaper.jpg);
+            background: url(../src/imagens/wallpaper.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -159,16 +161,17 @@ if (isset($_POST['registro'])) {
                 <p>*os formatos suportados são: PNG/JPG/JPEG</p>
             </div>
 
+            <?php if (!empty($msgErros)): ?>
+                <div class="error-msg">
+                    <?= $msgErros; ?>
+                </div>
+            <?php endif; ?>
 
             <input type="submit" value="Registrar-se" name="registro" class="registrar">
 
         </form>
 
-     <?php 
-        
-    ?>
     </div>
-
 
 </body>
 

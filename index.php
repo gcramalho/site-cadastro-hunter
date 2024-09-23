@@ -8,8 +8,7 @@ if (isset($_SESSION['logado'])) {
    
 } else {
     if (isset($_GET['error']) && $_GET['error'] === '1') {
-        echo  "<script> alert('É necessário fazer login para acessar esta página'); </script>";
-        
+        echo  "<script> alert('É necessário fazer login para acessar esta página'); </script>";       
     }
 
     }
@@ -24,7 +23,7 @@ if (isset($_SESSION['logado'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Site Hunter</title>
         <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="src/css/style.css">
     </head>
 
     <body>
