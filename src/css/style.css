@@ -1,7 +1,9 @@
 @font-face {
-    src: url(fontes/pixel.TTF);
+    src: url(../../fontes/pixel.TTF);
     font-family: pixel;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 * {
     margin: 0;

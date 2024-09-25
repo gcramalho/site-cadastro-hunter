@@ -5,11 +5,11 @@ $bdUsuario = "root";
 $bdSenha = "";
 $bdNome = "hunterscadastro";
 
+
 $conn = mysqli_connect($hostName, $bdUsuario, $bdSenha, $bdNome);
 
 
 //tratando a variavel de conexão (se conn for false)
-
 if (!$conn) {
     die("Falha na conexão");
 }
