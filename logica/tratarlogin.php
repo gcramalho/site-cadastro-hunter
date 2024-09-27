@@ -1,23 +1,25 @@
 <?php
+// Dependências
 session_start();
-require_once "cadastro-login/bancodados.php";
+require_once "bancodados.php";
 
+// Tratamento dados POST
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $login = $_POST['login'];   // Recupera os dados POST 
+    $email = $_POST['email'];    
     $senha = $_POST['senha'];
 
-    $sqlBuscar = "SELECT * FROM usuarios WHERE login = '$login'";
+    $sqlBuscar = "SELECT * FROM usuarios WHERE email = '$email'";
     $resultado = mysqli_query($conn, $sqlBuscar);
 
-    $usuario = mysqli_fetch_array($resultado, MYSQLI_ASSOC);  // Coloca os dados da tabela usuario dentro da variável-array
+    $usuario = mysqli_fetch_array($resultado, MYSQLI_ASSOC);  // Armazena dados da tabela
 
     if ($usuario) 
     { 
         // Checa se a senha confere e efetua o login 
         if (password_verify($senha, $usuario['senha'])) {
             $_SESSION['logado'] = "sim";  // Sessão de login
-            $_SESSION['usuarioOn'] = $usuario; // Armazena dados do usuário
-            header('Location: user_side/entrada.php');
+            $_SESSION['usuarioOn'] = $usuario; // Armazena dados do usuário na sessão
+            header('Location: ../entrada.php'); 
             die();
         } else {
             $_SESSION['error'] = "Senha não confere.";
@@ -26,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION['error'] = "Usuário não encontrado.";
     }
 
-    // Redireciona de volta para o formulário se houver erro
-    header('Location: index.php');
+    // Se houver erro no request, redireciona de volta para o formulário.
+    header('Location: ../index.php'); 
     die();
 }

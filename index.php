@@ -1,5 +1,5 @@
 <?php
-//PENDENTE - ORGANIZAR PASTAS (FONTES DENTRO DE SRC, PASTAS SÓ COM ARQUIVOS DE TRATAMENTO ETC)
+//PENDENTE - CRIAR LÓGICA DE 'REMEMBER ME' E 'ESQUECEU LOGIN'
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -21,22 +21,23 @@ if (isset($_SESSION['logado'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Hunter</title>
+    <title>Portal Hunter</title>
     <link rel="stylesheet" type="text/css" href="src/css/style.css">
+    <link rel="shortcut icon" href="src/imagens/favicon.png" type="image/x-icon">
 </head>
 
 <body>
     <div class="container">
 
-        <form action="tratarlogin.php" method="post">
+        <form action="logica/tratarlogin.php" method="post">
             <h1>Bem-vindo de volta, hunter!</h1>
 
             <div class="input-caixa">
-                <input type="text" placeholder="Insira seu ID" name="login" required>
+                <input type="email" placeholder="Informe seu e-mail" name="email" required>
             </div>
 
             <div class="input-caixa">
-                <input type="password" placeholder="Insira sua senha" name="senha" required>
+                <input type="password" placeholder="Informe sua senha" name="senha" required>
             </div>
 
             <div class="lembrar-caixa">
@@ -48,18 +49,21 @@ if (isset($_SESSION['logado'])) {
             <input type="submit" id="entrar" value="Entrar" name="entrar" class="btn">
 
             <div class="registrar-se">
-                <p>Não possui cadastro? <a href="cadastro-login/cadastro.php"> Registre-se aqui!</a> </p>
+                <p>Não possui cadastro? <a href="cadastro.php"> Registre-se aqui!</a> </p>
             </div>
+
 
             <?php
         // Exibe a mensagem de erro, se existir
         if (isset($_SESSION['error'])) {
             echo "<div class='alerta'>{$_SESSION['error']}</div>";
-            unset($_SESSION['error']); // Limpa a mensagem de erro após exibir
+            // Limpa a sessão-mensagem após exibir
+            unset($_SESSION['error']);
         }
         ?>
 
         </form>
+
     </div>
 
 </body>

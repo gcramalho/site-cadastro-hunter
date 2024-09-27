@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
 @font-face {
-    src: url(../../fontes/pixel.TTF);
+    src: url(../fontes/pixel.TTF);
     font-family: pixel;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 * {
     margin: 0;
@@ -23,9 +24,10 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(../imagens/tst.jpg) no-repeat; /* MUDAR IMAGEM DE FUNDO */
+    background: url(../imagens/fundoindex.jpg) no-repeat; /* MUDAR IMAGEM DE FUNDO */
     background-size: cover;
 }
+
 
 .container {
     /*background-color: green;*/
@@ -38,6 +40,7 @@ body {
     backdrop-filter: blur(7px);
     
 }
+
 
 .container .obtenha {
     font-family: pixel;

@@ -1,4 +1,5 @@
-<?php //fechando sessão e deslogando
+<?php 
+// Fechando sessão (deslogando)
 session_start();
 
 session_destroy();

@@ -1,4 +1,5 @@
 <?php
+// Tratamento de sessão
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -23,8 +24,9 @@ if (isset($_SESSION['usuarioOn'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil Hunter</title>
-    <link rel="stylesheet" href="../src/css/user.css">
+    <link rel="stylesheet" href="src/css/user.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="src/imagens/favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -32,10 +34,12 @@ if (isset($_SESSION['usuarioOn'])) {
     <div class="container">
         <div class="texto-geral">
 
-            <h1>Olá, <?= $nomeUsu ?> !</h1>
+        <!-- Impressão de info-usuário -->
+
+            <h1>Olá, <?= $nomeUsu ?>!</h1>
 
             <div class="image-section">
-                <img height="200" src="<?= "../user_side/" . $fotoUsu ?>"> </img>
+                <img height="200" src="<?= "projetoHxH/" . $fotoUsu ?>" />
             </div>
 
 
@@ -46,6 +50,8 @@ if (isset($_SESSION['usuarioOn'])) {
                 <p> <?= $emailUsu ?> </p>
 
             </div>
+
+            <!-- Gerador de level aleatório -->
 
             <div class="medalha">
 
@@ -58,11 +64,9 @@ if (isset($_SESSION['usuarioOn'])) {
 
     </div>
 
-
-    <button onclick="window.location.href='../logout/logout.php'" class="btn">Sair</button>
+     <!-- Lógica de logout -->
+    <button onclick="window.location.href='logout/logout.php'" class="btn">Sair</button>
     </div>
 </body>
 
 </html>
-
-<!-- tentar aplicar mudanças nessa branch antes de aplicar na main // criar css da pagina de usuario -->
